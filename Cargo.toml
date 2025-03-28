@@ -7,7 +7,7 @@ description = "A procedural macro for deserializing ordered arrays into keyed st
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/NickBotelho/serde-ordered"
 keywords = ["serde", "deserialization", "macro", "proc-macro"]
-categories = ["deserialization", "parsing"]
+categories = ["data-structures", "parsing"]
 readme = "README.md"
 
 [dependencies]
