@@ -11,7 +11,7 @@ struct FieldOrder {
 }
 
 ///A procedural macro for deserializing ordered arrays into keyed structs using Serde.
-#[proc_macro_derive(DeserializeOrdered, attributes(serde))]
+#[proc_macro_derive(DeserializeOrdered, attributes(order))]
 pub fn derive_order(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let name = &input.ident;
@@ -145,28 +145,17 @@ pub fn derive_order(input: TokenStream) -> TokenStream {
     TokenStream::from(deserialization)
 }
 
-//Grabs the order from #[serde(order = ...)]
+//Grabs the order from #[order = ...]
 fn get_order_from_field(field: &Field) -> Result<i32> {
     for attribute in &field.attrs {
-        if attribute.path().is_ident("serde") {
-            let mut order_value = None;
-            attribute.parse_nested_meta(|meta| {
-                if meta.path.is_ident("order") {
-                    let value = meta.value()?;
-                    let order: LitInt = value.parse()?;
-                    order_value = Some(order.base10_parse::<i32>()?);
-                }
-                Ok(())
-            })?;
-
-            if let Some(order) = order_value {
-                return Ok(order);
-            }
+        if attribute.path().is_ident("order") {
+            let order: LitInt = attribute.parse_args()?;
+            return Ok(order.base10_parse::<i32>()?);
         }
     }
 
     Err(syn::Error::new_spanned(
         field,
-        "No `order` attribute found in #[serde(...)] which is required for DeserializeOrdered",
+        "No `order` attribute found, which is required for DeserializeOrdered",
     ))
 }

@@ -17,16 +17,16 @@ struct Bar {
 
 #[derive(DeserializeOrdered)]
 struct SlimFoo {
-    #[serde(order=1)]
+    #[order(1)]
     pub biz: Option<String>,
 
-    #[serde(order=2)]
+    #[order(2)]
     pub bar: SlimBar,
 }
 
 #[derive(DeserializeOrdered)]
 struct SlimBar {
-    #[serde(order=1)]
+    #[order(1)]
     pub bif: String
 }
 
