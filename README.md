@@ -41,7 +41,7 @@ struct SlimBar {
     pub bif: String
 }
 ```
-against an un-keyed MessagePack message like `[1, null, [100, "100"], 1]` it would error due to a length mismatchm, requring developers to ensure they have typed out every field. This could also introduce problems if an upstream provider changed the struct without notifying the consumer which would cause a length mismatch error, Hense `serde-ordered`
+against an un-keyed MessagePack message like `[1, null, [100, "100"], 1]` it would error due to a length mismatch, requring developers to ensure they have typed out every field. This could also introduce problems if an upstream provider changed the struct without notifying the consumer which would cause a length mismatch error, Hense `serde-ordered`
 
 ## Installation
 
@@ -59,8 +59,8 @@ Simply derive the `DeserializeOrdered` trait on the struct and tag each field of
 ```rust
 #[derive(DeserializeOrdered)]
 struct SlimFoo {
-    #[order(1)]
-    pub biz: Option<String>,
+    #[order(0)]
+    pub buz: i32,
 
     #[order(2)]
     pub bar: SlimBar,
