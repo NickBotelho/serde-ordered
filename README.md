@@ -49,8 +49,8 @@ Add this to your `Cargo.toml`: the proc macro within serde-ordered and the depen
 
 ```toml
 [dependencies]
-serde-ordered = "0.1"
-serde-value = "0.7.0"
+serde-ordered = "*"
+serde-value = "*"
 ```
 
 ## Usage
