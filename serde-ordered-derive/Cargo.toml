@@ -1,0 +1,19 @@
+[package]
+name = "serde-ordered-derive"
+version = "0.3.0"
+edition = "2024"
+authors = ["Nick Botelho nickpbotelho@gmail.com"]
+description = "A procedural macro for deserializing ordered arrays into keyed structs using Serde."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/NickBotelho/serde-ordered"
+keywords = ["serde", "deserialization", "macro", "proc-macro"]
+categories = ["data-structures", "parsing"]
+readme = "README.md"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { version = "2.0", features = ["full"] }
+quote = "1.0"
+proc-macro2 = "1.0"

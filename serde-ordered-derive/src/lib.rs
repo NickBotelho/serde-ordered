@@ -101,7 +101,7 @@ pub fn derive_order(input: TokenStream) -> TokenStream {
                             let mut #field_names: Option<#field_types> = None;
                         )*
 
-                        while let Ok(element) = seq.next_element::<serde_value::Value>() {
+                        while let Ok(element) = seq.next_element::<::serde_ordered::value::Value>() {
                             if element.is_none() {break;}
                 
                             let element = element.unwrap();
